@@ -1,3 +1,4 @@
+import UTILS.Platform
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {

@@ -58,11 +58,19 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(compose.runtime)
-            implementation(compose.foundation)
+            api(compose.foundation)
+            api(compose.animation)
             implementation(compose.material)
+            api(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+            implementation(compose.components.resources)
+
+            api("moe.tlaster:precompose:1.5.10")
+            api("moe.tlaster:precompose-viewmodel:1.5.10")
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -105,6 +113,18 @@ android {
     dependencies {
         debugImplementation(compose.uiTooling)
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.6"
+    }
+}
+dependencies {
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.ui.util.android)
+    implementation(libs.androidx.media3.common)
+    implementation(libs.firebase.crashlytics.buildtools)
 }
 
 compose.desktop {
